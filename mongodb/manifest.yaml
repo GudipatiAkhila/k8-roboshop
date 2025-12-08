@@ -28,12 +28,11 @@ spec:
       containers:
       - name: mongodb
         image: gudipatiakhila/mongodb:v1
-        imagePullPolicy: Always
         readinessProbe:
-        tcpSocket:
-        port: 27017
-        initialDelaySeconds: 10
-        periodSeconds: 10
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 10
+          periodSeconds: 10
         livenessProbe:
           tcpSocket:
             port: 27017
