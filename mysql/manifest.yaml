@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb
+  name: mysql
   namespace: roboshop
   # these are replica set labels
   labels:
    project: roboshop
-   component: mongodb
+   component: mysql
    tier: db
 spec:
   replicas: 1
@@ -14,7 +14,7 @@ spec:
     # these labels are used to select pods
     matchLabels:
       project: roboshop
-      component: mongodb
+      component: mysql
       tier: db
   # pod definition
   template:
@@ -22,12 +22,12 @@ spec:
       labels:
         # purpose: dp-demo
         project: roboshop
-        component: mongodb
+        component: mysql
         tier: db
     spec:
       containers:
-      - name: mongodb
-        image: gudipatiakhila/mongodb:v1
+      - name: mysql
+        image: gudipatiakhila/mysql:v1
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
@@ -43,12 +43,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb
+  name: mysql
   namespace: roboshop
 spec:
   selector:
     project: roboshop
-    component: mongodb
+    component: mysql
     tier: db
   ports:
     - protocol: TCP
