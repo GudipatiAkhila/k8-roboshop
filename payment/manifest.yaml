@@ -42,6 +42,10 @@ spec:
       - name: payment
         image: gudipatiakhila/payment:v1
         imagePullPolicy: Always
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          allowPrivilegeEscalation: true
         envFrom:
         - configMapRef:
             name: payment
